@@ -1,1 +1,37 @@
-<p>chart-update-actions works!</p>
+<form [formGroup]="chartUpdateActionsForm">
+  <mat-form-field>
+    <mat-label>Location</mat-label>
+    <mat-select name="location" [formControlName]="chartUpdateActionsFormControlNames.location">
+      <mat-option *ngFor="let location of locations" [value]="location">
+        {{location}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Metric</mat-label>
+    <mat-select name="metric" [formControlName]="chartUpdateActionsFormControlNames.metric">
+      <mat-option *ngFor="let metric of metrics" [value]="metric.value">
+        {{metric.displayText}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="dpStart" [min]="minDateForSelection" [max]="maxDateForSelection"
+      placeholder="Start Month and Year" [formControlName]="chartUpdateActionsFormControlNames.startMonthYear">
+    <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
+    <mat-datepicker #dpStart startView="multi-year" (yearSelected)="chosenStartYearHandler($event)"
+      (monthSelected)="chosenStartMonthHandler($event, dpStart)" panelClass="example-month-picker">
+    </mat-datepicker>  
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="dpEnd" [min]="minDateForSelection" [max]="maxDateForSelection"
+      placeholder="End Month and Year" [formControlName]="chartUpdateActionsFormControlNames.endMonthYear">
+    <mat-datepicker-toggle matSuffix [for]="dpEnd"></mat-datepicker-toggle>
+    <mat-datepicker #dpEnd startView="multi-year" (yearSelected)="chosenEndYearHandler($event)"
+      (monthSelected)="chosenEndMonthHandler($event, dpEnd)" panelClass="example-month-picker">
+    </mat-datepicker>
+  </mat-form-field>
+  <mat-error *ngIf="!isStartAndEndDateValid">
+    Start date must be less than end date
+</mat-error>    
+</form>

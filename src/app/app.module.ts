@@ -8,6 +8,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MaterialModule } from './modules/material/material.module';
 import { ChartUpdateActionsComponent } from './components/chart-update-actions/chart-update-actions.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,10 @@ import { ChartComponent } from './components/chart/chart.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,8 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
-const materialModulesList = [MatSelectModule, MatFormFieldModule, MatSnackBarModule, MatDatepickerModule, MatInputModule];
+const materialModulesList = [MatSelectModule, MatFormFieldModule, MatSnackBarModule, MatDatepickerModule, MatInputModule, MatButtonModule];
 
 @NgModule({
   declarations: [],

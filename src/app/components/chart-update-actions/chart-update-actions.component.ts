@@ -1,3 +1,4 @@
+import { ChartDataUpdateService } from './../../services/chart-data-update.service';
 import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -47,12 +48,10 @@ export const MY_FORMATS = {
 })
 export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
 
-  @Output()
-  updateChart: EventEmitter<void> = new EventEmitter();
-
   chartUpdateActionsForm: FormGroup;
 
   minDateForSelection: Moment;
+
   maxDateForSelection: Moment;
 
   readonly chartUpdateActionsFormControlNames = {
@@ -106,7 +105,11 @@ export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
     return this.chartUpdateActionsForm.controls[this.chartUpdateActionsFormControlNames.endMonthYear] as FormControl;
   }
 
-  constructor(private formBuilder: FormBuilder, private httpClient: HttpClient, private matSnackBar: MatSnackBar) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private httpClient: HttpClient,
+    private matSnackBar: MatSnackBar,
+    private chartDataUpdateService: ChartDataUpdateService) {
 
     this.chartUpdateActionsForm = this.formBuilder.group({
       [this.chartUpdateActionsFormControlNames.location]: new FormControl(this.preSelectedLocations),
@@ -219,16 +222,15 @@ export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
   private updateChartsDataAsPerSelectedStartAndEndDate() {
 
     if (this.isStartAndEndDateValid) {
-      const filteredMetricDetailsfilteredMetricDetails = this.fetchedMetricDetails.filter((metricDetail) => {
+      const filteredMetricDetailsfilteredMetricDetails: MetricDetails[] = this.fetchedMetricDetails.filter((metricDetail) => {
         return moment(moment().year(metricDetail.year).month(metricDetail.month - 1))
           .isBetween(this.startMonthYearFormControl.value, this.endMonthYearFormControl.value, 'days', '[]');
       });
-      // this.updateChart(filteredMetricDetailsfilteredMetricDetails);
+      this.chartDataUpdateService.onChartDataUpdate.next(filteredMetricDetailsfilteredMetricDetails);
     }
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
-
 }

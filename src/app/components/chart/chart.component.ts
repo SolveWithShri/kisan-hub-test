@@ -129,9 +129,9 @@ export class ChartComponent implements OnDestroy {
       loopUp[Months.JULY].push(monthsMap.get(Months.JULY) || 0);
       loopUp[Months.AUGUST].push(monthsMap.get(Months.AUGUST) || 0);
       loopUp[Months.SEPTEMBER].push(monthsMap.get(Months.SEPTEMBER) || 0);
-      loopUp[Months.OCTOBER].push(monthsMap.get(Months.SEPTEMBER) || 0);
-      loopUp[Months.NOVEMBER].push(monthsMap.get(Months.SEPTEMBER) || 0);
-      loopUp[Months.DECEMBER].push(monthsMap.get(Months.SEPTEMBER) || 0);
+      loopUp[Months.OCTOBER].push(monthsMap.get(Months.OCTOBER) || 0);
+      loopUp[Months.NOVEMBER].push(monthsMap.get(Months.NOVEMBER) || 0);
+      loopUp[Months.DECEMBER].push(monthsMap.get(Months.DECEMBER) || 0);
     });
 
     const barChartData: ChartDataSets[] = [
@@ -184,8 +184,6 @@ export class ChartComponent implements OnDestroy {
         label: Months.DECEMBER.toString()
       }
     ];
-
-    console.log('barChartData - ', barChartData);
 
     this.barChartLabels = barChartLabels;
     this.barChartData = barChartData;

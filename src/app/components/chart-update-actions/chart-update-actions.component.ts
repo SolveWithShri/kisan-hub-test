@@ -136,7 +136,6 @@ export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
       this.startMonthYearFormControl.valueChanges
         .pipe(debounceTime(1000))
         .subscribe((changedStartMonthYear) => {
-          console.log('changedStartMonthYear - ', changedStartMonthYear);
           this.updateChartsDataAsPerSelectedStartAndEndDate();
         })
     );
@@ -145,7 +144,6 @@ export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
       this.endMonthYearFormControl.valueChanges
         .pipe(debounceTime(1000))
         .subscribe((changedEndMonthYear) => {
-          console.log('changedEndMonthYear - ', changedEndMonthYear);
           this.updateChartsDataAsPerSelectedStartAndEndDate();
         })
     );
@@ -182,9 +180,6 @@ export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
   }
 
   private fetchDetails(location: Locations = this.preSelectedLocations, metric: Metrics = this.preSelectedMetric) {
-    console.log('fetchDetails - location - ', location);
-    console.log('fetchDetails - metric - ', metric);
-
     this.fetchedMetricDetails = [];
 
     this.subscriptions.add(

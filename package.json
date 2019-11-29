@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy-github": "npm run deploy-github-build && npm run deploy-github-push",
-    "deploy-github-build": "ng build --prod --base-href 'https://ShrikantAdhav.github.io/kisan-hub-test/'",
+    "deploy-github-build": "ng build --prod --base-href https://ShrikantAdhav.github.io/kisan-hub-test/",
     "deploy-github-push": "ngh --dir=dist/kisan-hub-test"
   },
   "private": true,

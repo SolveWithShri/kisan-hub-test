@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 
-import { MetricDetails } from './../dtos/metric-details.dto';
+import { ChartUpdateActionsMetaData } from '../models/chart-update-actions-meta-data.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChartDataUpdateService {
 
-  onChartDataUpdate: Subject<MetricDetails[]> = new Subject();
+  onChartDataUpdate: Subject<ChartUpdateActionsMetaData> = new Subject();
 }

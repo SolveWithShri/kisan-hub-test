@@ -8,8 +8,18 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-const materialModulesList = [MatSelectModule, MatFormFieldModule, MatSnackBarModule, MatDatepickerModule, MatInputModule, MatButtonModule, MatCardModule];
+const materialModulesList = [
+  MatSelectModule,
+  MatFormFieldModule,
+  MatSnackBarModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatButtonModule,
+  MatCardModule,
+  MatProgressSpinnerModule
+];
 
 @NgModule({
   declarations: [],

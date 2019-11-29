@@ -1,11 +1,11 @@
-import { Months, transformMonthNumberToMonthsName } from './../../enumerations/months.enum';
 import { Component, OnDestroy } from '@angular/core';
 
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label, Colors } from 'ng2-charts';
 import { Subscription } from 'rxjs/internal/Subscription';
 
-import { MetricDetails } from './../../dtos/metric-details.dto';
+import { ChartUpdateActionsMetaData } from './../../models/chart-update-actions-meta-data.model';
+import { Months, transformMonthNumberToMonthsName } from './../../enumerations/months.enum';
 import { ChartDataUpdateService } from './../../services/chart-data-update.service';
 
 @Component({
@@ -74,13 +74,19 @@ export class ChartComponent implements OnDestroy {
       label: Months.DECEMBER.toString()
     }
   ];
+  chartUpdateActionsMetaData: ChartUpdateActionsMetaData;
+  dateFormat = 'MMMM YYYY';
 
   private subscriptions: Subscription = new Subscription();
 
-  constructor(private chartDataUpdateService: ChartDataUpdateService) {
+  constructor(private chartDataUpdateService: ChartDataUpdateService
+  ) {
     this.subscriptions.add(
       this.chartDataUpdateService.onChartDataUpdate
-        .subscribe(metricDetails => this.generateChartConfig(metricDetails))
+        .subscribe(chartUpdateActionsMetaData => {
+          this.chartUpdateActionsMetaData = chartUpdateActionsMetaData;
+          this.generateChartConfig();
+        })
     );
   }
 
@@ -88,7 +94,7 @@ export class ChartComponent implements OnDestroy {
     this.barChartType = this.barChartType === 'bar' ? 'line' : 'bar';
   }
 
-  private generateChartConfig(metricDetails: MetricDetails[] = []) {
+  private generateChartConfig() {
 
     const loopUp = {
       [Months.JANUARY]: [],
@@ -107,14 +113,13 @@ export class ChartComponent implements OnDestroy {
     const loopUpMap: Map<number, Map<Months, number>> = new Map();
     const barChartLabels: Label[] = [];
 
-    metricDetails.forEach((metric) => {
+    this.chartUpdateActionsMetaData.metricDetails.forEach((metric) => {
 
       if (!loopUpMap.has(metric.year)) {
         loopUpMap.set(metric.year, new Map());
       }
 
       loopUpMap.set(metric.year, loopUpMap.get(metric.year).set(transformMonthNumberToMonthsName(metric.month), metric.value));
-
     });
 
     loopUpMap.forEach((monthsMap, year) => {

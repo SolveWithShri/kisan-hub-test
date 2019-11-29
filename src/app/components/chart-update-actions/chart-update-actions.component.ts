@@ -63,7 +63,7 @@ export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
 
   readonly metrics: MetricSelectConfig[] = [
     {
-      displayText: 'Temperature(Min)',
+      displayText: 'Temperature (Min)',
       value: Metrics.Tmin
     },
     {
@@ -219,7 +219,14 @@ export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
         return moment(moment().year(metricDetail.year).month(metricDetail.month - 1))
           .isBetween(this.startMonthYearFormControl.value, this.endMonthYearFormControl.value, 'days', '[]');
       });
-      this.chartDataUpdateService.onChartDataUpdate.next(filteredMetricDetailsfilteredMetricDetails);
+
+      this.chartDataUpdateService.onChartDataUpdate.next({
+        location: this.locationFormControl.value,
+        metricSelectConfig: this.metrics.find((metric) => metric.value === this.metricFormControl.value),
+        startMonthYear: this.startMonthYearFormControl.value,
+        endMonthYear: this.endMonthYearFormControl.value,
+        metricDetails: filteredMetricDetailsfilteredMetricDetails
+      });
     }
   }
 

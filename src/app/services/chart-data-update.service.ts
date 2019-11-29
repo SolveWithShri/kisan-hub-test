@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+
 import { Subject } from 'rxjs';
 
 import { ChartUpdateActionsMetaData } from '../models/chart-update-actions-meta-data.model';

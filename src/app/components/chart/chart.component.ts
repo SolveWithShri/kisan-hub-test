@@ -17,64 +17,21 @@ export class ChartComponent implements OnDestroy {
 
   barChartOptions: ChartOptions = {
     responsive: false,
-    // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
   };
+
   barChartLabels: Label[] = [];
+
   barChartType: ChartType = 'line';
+
   colors: Colors[] = [];
+
   barChartLegend = true;
-  barChartData: ChartDataSets[] = [
-    {
-      data: [],
-      label: Months.JANUARY.toString()
-    },
-    {
-      data: [],
-      label: Months.FEBRUARY.toString()
-    },
-    {
-      data: [],
-      label: Months.MARCH.toString()
-    },
-    {
-      data: [],
-      label: Months.APRIL.toString()
-    },
-    {
-      data: [],
-      label: Months.MAY.toString()
-    },
-    {
-      data: [],
-      label: Months.JUN.toString()
-    },
-    {
-      data: [],
-      label: Months.JULY.toString()
-    },
-    {
-      data: [],
-      label: Months.AUGUST.toString()
-    },
-    {
-      data: [],
-      label: Months.SEPTEMBER.toString()
-    },
-    {
-      data: [],
-      label: Months.OCTOBER.toString()
-    },
-    {
-      data: [],
-      label: Months.NOVEMBER.toString()
-    },
-    {
-      data: [],
-      label: Months.DECEMBER.toString()
-    }
-  ];
+
+  barChartData: ChartDataSets[] = this.getBarChartDataAsPerMonth();
+
   chartUpdateActionsMetaData: ChartUpdateActionsMetaData;
+
   dateFormat = 'MMMM YYYY';
 
   private subscriptions: Subscription = new Subscription();
@@ -138,59 +95,90 @@ export class ChartComponent implements OnDestroy {
       loopUp[Months.DECEMBER].push(monthsMap.get(Months.DECEMBER) || 0);
     });
 
-    const barChartData: ChartDataSets[] = [
-      {
-        data: loopUp[Months.JANUARY],
-        label: Months.JANUARY.toString()
-      },
-      {
-        data: loopUp[Months.FEBRUARY],
-        label: Months.FEBRUARY.toString()
-      },
-      {
-        data: loopUp[Months.MARCH],
-        label: Months.MARCH.toString()
-      },
-      {
-        data: loopUp[Months.APRIL],
-        label: Months.APRIL.toString()
-      },
-      {
-        data: loopUp[Months.MAY],
-        label: Months.MAY.toString()
-      },
-      {
-        data: loopUp[Months.JUN],
-        label: Months.JUN.toString()
-      },
-      {
-        data: loopUp[Months.JULY],
-        label: Months.JULY.toString()
-      },
-      {
-        data: loopUp[Months.AUGUST],
-        label: Months.AUGUST.toString()
-      },
-      {
-        data: loopUp[Months.SEPTEMBER],
-        label: Months.SEPTEMBER.toString()
-      },
-      {
-        data: loopUp[Months.OCTOBER],
-        label: Months.OCTOBER.toString()
-      },
-      {
-        data: loopUp[Months.NOVEMBER],
-        label: Months.NOVEMBER.toString()
-      },
-      {
-        data: loopUp[Months.DECEMBER],
-        label: Months.DECEMBER.toString()
-      }
-    ];
+    const barChartData: ChartDataSets[] = this.getBarChartDataAsPerMonth(
+      loopUp[Months.JANUARY],
+      loopUp[Months.FEBRUARY],
+      loopUp[Months.MARCH],
+      loopUp[Months.APRIL],
+      loopUp[Months.MAY],
+      loopUp[Months.JUN],
+      loopUp[Months.JULY],
+      loopUp[Months.AUGUST],
+      loopUp[Months.SEPTEMBER],
+      loopUp[Months.OCTOBER],
+      loopUp[Months.NOVEMBER],
+      loopUp[Months.DECEMBER]
+    );
 
     this.barChartLabels = barChartLabels;
     this.barChartData = barChartData;
+  }
+
+  private getBarChartDataAsPerMonth(
+    jan: number[] = [],
+    feb: number[] = [],
+    mar: number[] = [],
+    apr: number[] = [],
+    may: number[] = [],
+    jun: number[] = [],
+    jul: number[] = [],
+    aug: number[] = [],
+    sep: number[] = [],
+    oct: number[] = [],
+    nov: number[] = [],
+    dec: number[] = []
+
+  ): ChartDataSets[] {
+    return [
+      {
+        data: jan,
+        label: Months.JANUARY.toString()
+      },
+      {
+        data: feb,
+        label: Months.FEBRUARY.toString()
+      },
+      {
+        data: mar,
+        label: Months.MARCH.toString()
+      },
+      {
+        data: apr,
+        label: Months.APRIL.toString()
+      },
+      {
+        data: may,
+        label: Months.MAY.toString()
+      },
+      {
+        data: jun,
+        label: Months.JUN.toString()
+      },
+      {
+        data: jul,
+        label: Months.JULY.toString()
+      },
+      {
+        data: aug,
+        label: Months.AUGUST.toString()
+      },
+      {
+        data: sep,
+        label: Months.SEPTEMBER.toString()
+      },
+      {
+        data: oct,
+        label: Months.OCTOBER.toString()
+      },
+      {
+        data: nov,
+        label: Months.NOVEMBER.toString()
+      },
+      {
+        data: dec,
+        label: Months.DECEMBER.toString()
+      }
+    ];
   }
 
   ngOnDestroy(): void {

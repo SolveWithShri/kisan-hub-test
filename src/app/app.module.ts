@@ -12,6 +12,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { MaterialModule } from './modules/material/material.module';
 import { ChartUpdateActionsComponent } from './components/chart-update-actions/chart-update-actions.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ChartComponent } from './components/chart/chart.component';
     AppComponent,
     DashboardComponent,
     ChartUpdateActionsComponent,
-    ChartComponent
+    ChartComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

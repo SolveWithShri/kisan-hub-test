@@ -1,5 +1,4 @@
-import { ChartDataUpdateService } from './../../services/chart-data-update.service';
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -9,7 +8,6 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDatepicker } from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import { default as _rollupMoment, Moment } from 'moment';
-
 import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -18,7 +16,7 @@ import { MetricSelectConfig } from '../../models/metrics-select-config.model';
 import { Locations } from './../../enumerations/locations.enum';
 import { environment } from './../../../environments/environment';
 import { MetricDetails } from './../../dtos/metric-details.dto';
-
+import { ChartDataUpdateService } from './../../services/chart-data-update.service';
 
 const moment = _rollupMoment || _moment;
 export const MY_FORMATS = {
@@ -135,7 +133,7 @@ export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.startMonthYearFormControl.valueChanges
         .pipe(debounceTime(1000))
-        .subscribe((changedStartMonthYear) => {
+        .subscribe(() => {
           this.updateChartsDataAsPerSelectedStartAndEndDate();
         })
     );
@@ -143,7 +141,7 @@ export class ChartUpdateActionsComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.endMonthYearFormControl.valueChanges
         .pipe(debounceTime(1000))
-        .subscribe((changedEndMonthYear) => {
+        .subscribe(() => {
           this.updateChartsDataAsPerSelectedStartAndEndDate();
         })
     );

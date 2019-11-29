@@ -7,7 +7,8 @@ import { Locations } from './../app/enumerations/locations.enum';
 
 export const environment = {
   production: false,
-  fetchMetricDetailsBasedOnLocation: (location: Locations, metric: Metrics) => `https://s3.eu-west-2.amazonaws.com/interview-question-data/metoffice/${metric}-${location}.json`
+  fetchMetricDetailsBasedOnLocation: (location: Locations, metric: Metrics) => `https://s3.eu-west-2.amazonaws.com/interview-question-data/metoffice/${metric}-${location}.json`,
+  projectHeaderLogoUrl: 'https://static.kisanhub.com/corporate/landing/img/kisanhub_logo.svg'
 };
 
 /*

@@ -16,7 +16,7 @@ import { ChartDataUpdateService } from './../../services/chart-data-update.servi
 export class ChartComponent implements OnDestroy {
 
   barChartOptions: ChartOptions = {
-    responsive: true,
+    responsive: false,
     // We use these empty structures as placeholders for dynamic theming.
     scales: { xAxes: [{}], yAxes: [{}] },
   };
@@ -24,7 +24,6 @@ export class ChartComponent implements OnDestroy {
   barChartType: ChartType = 'line';
   colors: Colors[] = [];
   barChartLegend = true;
-
   barChartData: ChartDataSets[] = [
     {
       data: [],

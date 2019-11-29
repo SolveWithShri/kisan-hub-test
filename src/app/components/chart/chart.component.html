@@ -1,15 +1,16 @@
-<mat-card class="example-card">
+<mat-card>
   <mat-card-header>
     <mat-card-title>Shiba Inu</mat-card-title>
     <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    <mat-card-actions>
+    <mat-card-actions class="ml-auto m-1">
       <button mat-button mat-raised-button color="primary" (click)="changeChartType()">Change chart type</button>
     </mat-card-actions>
   </mat-card-header>
+  <hr />
   <mat-card-content>
-    <div style="display: block">
-      <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-        [legend]="barChartLegend" [chartType]="barChartType" [colors]="colors"></canvas>
+    <div class="chart-wrapper d-flex justify-content-center">
+      <canvas width="1200" height="800" baseChart [datasets]="barChartData" [labels]="barChartLabels"
+        [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" [colors]="colors"></canvas>
     </div>
   </mat-card-content>
 </mat-card>

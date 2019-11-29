@@ -1,11 +1,10 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <mat-card-title>Filters</mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form [formGroup]="chartUpdateActionsForm">
-      <mat-form-field>
+      <mat-form-field class="col-sm-6 col-lg-3">
         <mat-label>Location</mat-label>
         <mat-select name="location" [formControlName]="chartUpdateActionsFormControlNames.location">
           <mat-option *ngFor="let location of locations" [value]="location">
@@ -13,7 +12,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="col-sm-6 col-lg-3">
         <mat-label>Metric</mat-label>
         <mat-select name="metric" [formControlName]="chartUpdateActionsFormControlNames.metric">
           <mat-option *ngFor="let metric of metrics" [value]="metric.value">
@@ -21,7 +20,7 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="col-sm-6 col-lg-3">
         <input matInput [matDatepicker]="dpStart" [min]="minDateForSelection" [max]="maxDateForSelection"
           placeholder="Start Month and Year" [formControlName]="chartUpdateActionsFormControlNames.startMonthYear">
         <mat-datepicker-toggle matSuffix [for]="dpStart"></mat-datepicker-toggle>
@@ -29,7 +28,7 @@
           (monthSelected)="chosenStartMonthHandler($event, dpStart)" panelClass="example-month-picker">
         </mat-datepicker>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="col-sm-6 col-lg-3">
         <input matInput [matDatepicker]="dpEnd" [min]="minDateForSelection" [max]="maxDateForSelection"
           placeholder="End Month and Year" [formControlName]="chartUpdateActionsFormControlNames.endMonthYear">
         <mat-datepicker-toggle matSuffix [for]="dpEnd"></mat-datepicker-toggle>
